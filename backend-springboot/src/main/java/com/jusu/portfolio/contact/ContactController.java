@@ -1,7 +1,6 @@
 package com.jusu.portfolio.contact;
 
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -12,9 +11,6 @@ import java.util.Map;
 @RequestMapping("/api/contact")
 public class ContactController {
     private final ContactMessageRepository repository;
-
-    @Value("${portfolio.allowed-origin:http://localhost:5173}")
-    private String allowedOrigin;
 
     public ContactController(ContactMessageRepository repository) {
         this.repository = repository;
