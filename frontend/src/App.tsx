@@ -37,7 +37,10 @@ const skills = [
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [copied, setCopied] = useState(false)
+  const [form, setForm] = useState({ name: '', email: '', message: '' })
+  const [formState, setFormState] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
   const email = import.meta.env.VITE_CONTACT_EMAIL as string | undefined
+  const apiBase = (import.meta.env.VITE_API_BASE_URL as string | undefined)?.replace(/\\/$/, '')
 
   const copyEmail = async () => {
     if (!email) return
@@ -51,6 +54,27 @@ function App() {
   }
 
   const closeMenu = () => setMenuOpen(false)
+
+  const submitContact = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    if (!apiBase) {
+      setFormState('error')
+      return
+    }
+    setFormState('sending')
+    try {
+      const response = await fetch(apiBase + '/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form)
+      })
+      if (!response.ok) throw new Error('Message could not be sent')
+      setForm({ name: '', email: '', message: '' })
+      setFormState('success')
+    } catch {
+      setFormState('error')
+    }
+  }
 
   return (
     <div className="site-shell">
@@ -131,7 +155,7 @@ function App() {
 
         <section className="content-section section-wrap contact-section" id="contact">
           <span className="eyebrow">05 — START A CONVERSATION</span>
-          <div className="contact-layout"><div><h2>Have a problem<br />worth <span className="gradient-text">solving?</span></h2><p className="contact-lede">I’m open to discussing software engineering roles, collaborations, and ideas where thoughtful technology can make a difference.</p></div><div className="contact-panel"><span className="contact-panel-label">GET IN TOUCH</span>{email ? <><a className="contact-email" href={'mailto:' + email}>{email} ↗</a><button className="copy-button" onClick={copyEmail}>{copied ? 'Copied to clipboard ✓' : 'Copy email address +'}</button></> : <><p className="email-placeholder">Add your preferred professional email to connect directly.</p><span className="copy-button disabled-copy">Email address not configured</span></>}<a className="social-link" href="https://github.com/karimjusu" target="_blank" rel="noreferrer">GitHub profile <span>↗</span></a><div className="contact-rule" /><span className="contact-location">FREETOWN, SIERRA LEONE · GMT</span></div></div>
+          <div className="contact-layout"><div><h2>Have a problem<br />worth <span className="gradient-text">solving?</span></h2><p className="contact-lede">I’m open to discussing software engineering roles, collaborations, and ideas where thoughtful technology can make a difference.</p></div><div className="contact-panel"><span className="contact-panel-label">SEND A MESSAGE</span><form className="contact-form" onSubmit={submitContact}><label>Your name<input required maxLength={100} value={form.name} onChange={e => setForm({...form, name: e.target.value})} placeholder="Jane Doe" /></label><label>Email address<input required type="email" maxLength={180} value={form.email} onChange={e => setForm({...form, email: e.target.value})} placeholder="jane@example.com" /></label><label>What would you like to discuss?<textarea required minLength={10} maxLength={2000} rows={4} value={form.message} onChange={e => setForm({...form, message: e.target.value})} placeholder="Tell me a little about your idea..." /></label><button className="send-button" type="submit" disabled={formState === 'sending'}>{formState === 'sending' ? 'Sending...' : 'Send message ↗'}</button>{formState === 'success' && <p className="form-feedback success">Thanks — your message has been received.</p>}{formState === 'error' && <p className="form-feedback error">Unable to send right now. Please try again later.</p>}</form>{email && <><div className="contact-rule" /><a className="contact-email" href={'mailto:' + email}>{email} ↗</a><button className="copy-button" onClick={copyEmail}>{copied ? 'Copied to clipboard ✓' : 'Copy email address +'}</button></>}<a className="social-link" href="https://github.com/karimjusu" target="_blank" rel="noreferrer">GitHub profile <span>↗</span></a><div className="contact-rule" /><span className="contact-location">FREETOWN, SIERRA LEONE · GMT</span></div></div>
         </section>
       </main>
 
