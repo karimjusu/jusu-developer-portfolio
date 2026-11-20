@@ -106,7 +106,13 @@ function App() {
             <div className="photo-orbit photo-orbit-a" />
             <div className="photo-orbit photo-orbit-b" />
             <div className="profile-photo-frame">
-              <img className="profile-photo" src="/jusu-profile.jpg" alt="Professional portrait of Abdul-Karim Jusu" />
+              <img
+                className="profile-photo"
+                src={`${import.meta.env.BASE_URL}jusu-profile.jpg?v=20261120-1`}
+                alt="Professional portrait of Abdul-Karim Jusu"
+                decoding="async"
+                fetchPriority="high"
+              />
             </div>
             <div className="float-chip chip-top">⌘ <span>Software Engineer</span></div>
             <div className="float-chip chip-bottom"><span className="chip-icon">↗</span><span>Ideas into systems</span></div>
