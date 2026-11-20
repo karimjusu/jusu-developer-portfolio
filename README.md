@@ -60,7 +60,7 @@ The API validates submitted fields and stores accepted messages in PostgreSQL. B
 6. Output directory: `dist`.
 7. Deploy.
 
-When the Spring Boot API is deployed, add `VITE_API_BASE_URL` in the Vercel project environment variables. The current portfolio contact panel uses the email configured in `VITE_CONTACT_EMAIL`; the API endpoint is scaffolded separately and will be wired into the form in a later implementation step.
+When the Spring Boot API is deployed, add `VITE_API_BASE_URL` in the Vercel project environment variables. The portfolio contact form submits to this API using `VITE_API_BASE_URL`. Set that variable in Vercel after deploying the Spring Boot service. You can optionally set `VITE_CONTACT_EMAIL` to display a direct email link as well.
 
 ## Content accuracy
 
