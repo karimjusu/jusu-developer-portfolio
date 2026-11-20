@@ -102,22 +102,14 @@ function App() {
             </div>
             <div className="hero-meta"><span><i className="meta-line" /> OPEN TO SOFTWARE ENGINEERING OPPORTUNITIES</span><span>01 / 04</span></div>
           </div>
-          <div className="hero-art" aria-label="Abstract software engineering illustration">
-            <div className="orbit orbit-a" /><div className="orbit orbit-b" />
-            <div className="core-card">
-              <div className="core-top"><span>ENGINEERING / 001</span><span className="core-live">● LIVE THINKING</span></div>
-              <div className="code-lines">
-                <div><b>01</b><span className="code-purple">const</span> <span className="code-white">engineer</span> = {'{'}</div>
-                <div><b>02</b><span className="code-indent code-blue">focus:</span> <span className="code-green">'reliable systems'</span>,</div>
-                <div><b>03</b><span className="code-indent code-blue">approach:</span> <span className="code-green">'build with purpose'</span>,</div>
-                <div><b>04</b><span className="code-indent code-blue">mindset:</span> <span className="code-green">'always learning'</span></div>
-                <div><b>05</b>{'}'};</div>
-              </div>
-              <div className="core-bottom"><span>JAVA · TYPESCRIPT · PYTHON</span><span>●</span></div>
+          <div className="hero-art hero-photo-wrap">
+            <div className="photo-orbit photo-orbit-a" />
+            <div className="photo-orbit photo-orbit-b" />
+            <div className="profile-photo-frame">
+              <img className="profile-photo" src="/jusu-profile.jpg" alt="Professional portrait of Abdul-Karim Jusu" />
             </div>
-            <div className="float-chip chip-top">⌘ <span>Problem solving</span></div>
+            <div className="float-chip chip-top">⌘ <span>Software Engineer</span></div>
             <div className="float-chip chip-bottom"><span className="chip-icon">↗</span><span>Ideas into systems</span></div>
-            <div className="art-cross cross-one">+</div><div className="art-cross cross-two">+</div>
           </div>
           <div className="hero-index"><span>SCROLL TO EXPLORE</span><span className="scroll-line" /></div>
         </section>
