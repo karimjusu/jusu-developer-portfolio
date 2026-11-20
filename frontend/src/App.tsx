@@ -40,7 +40,7 @@ function App() {
   const [form, setForm] = useState({ name: '', email: '', message: '' })
   const [formState, setFormState] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
   const email = import.meta.env.VITE_CONTACT_EMAIL as string | undefined
-  const apiBase = (import.meta.env.VITE_API_BASE_URL as string | undefined)?.replace(/\\/$/, '')
+  const apiBase = (import.meta.env.VITE_API_BASE_URL as string | undefined)?.replace(/\/$/, '')
 
   const copyEmail = async () => {
     if (!email) return
