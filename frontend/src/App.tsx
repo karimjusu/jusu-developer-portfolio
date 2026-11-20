@@ -98,6 +98,7 @@ function App() {
             <div className="hero-actions">
               <a className="button button-primary" href="#projects">Explore my work <span>↘</span></a>
               <a className="button button-quiet" href="#contact">Let’s connect <span>↗</span></a>
+              <a className="button button-quiet" href="/Abdul-Karim-Jusu-Resume.pdf" download="Abdul-Karim-Jusu-Resume.pdf">Download My CV <span>↓</span></a>
             </div>
             <div className="hero-meta"><span><i className="meta-line" /> OPEN TO SOFTWARE ENGINEERING OPPORTUNITIES</span><span>01 / 04</span></div>
           </div>
