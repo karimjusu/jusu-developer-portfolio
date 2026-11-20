@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, type FormEvent } from 'react'
 
 const projects = [
   {
@@ -40,7 +40,7 @@ function App() {
   const [form, setForm] = useState({ name: '', email: '', message: '' })
   const [formState, setFormState] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
   const email = import.meta.env.VITE_CONTACT_EMAIL as string | undefined
-  const apiBase = (import.meta.env.VITE_API_BASE_URL as string | undefined)?.replace(/\/$/, '')
+  const apiBase = import.meta.env.VITE_API_BASE_URL as string | undefined
 
   const copyEmail = async () => {
     if (!email) return
@@ -55,7 +55,7 @@ function App() {
 
   const closeMenu = () => setMenuOpen(false)
 
-  const submitContact = async (event: React.FormEvent<HTMLFormElement>) => {
+  const submitContact = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     if (!apiBase) {
       setFormState('error')
